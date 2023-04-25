@@ -37,6 +37,7 @@ const addEvents = () => {
         computerScore.textContent = "0";
         scoreBoard[0] = 0;
         scoreBoard[1] = 0;
+        message.textContent = "Rock, Paper, or Scissors?";
     })
 }
 
