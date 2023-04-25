@@ -1,54 +1,60 @@
+//Adding DOM selectors here
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorsButton = document.getElementById("scissors");
+const resetButton = document.getElementById("reset");
+const message = document.getElementById("message");
+const playerScore = document.getElementById("p1");
+const computerScore = document.getElementById("p2");
+
+//arrays for playGame function
 const validChoices = ["rock", "paper", "scissors"];
 const scoreBoard = [0, 0];
-const validityChecker = function(input) {
-    if (!validChoices.includes(input)) {
-        alert("Invalid input, retry");
-        input = playerSelection();
-    }
-    return input;
-}
 
-const playerSelection = function() {
-    let input = prompt("Rock, Paper, or Scissors?");
-    input = input.toLowerCase();
-    let output = validityChecker(input);
-    return output;
-}
-
+//setting default choice to rock
+let playerChoice;
 const computerSelection = function() {
     let randomIndex = Math.floor(Math.random() * validChoices.length);
     return randomIndex;
 }
 
-const playGame = function(){
+//add events
+const addEvents = () => {
+    rockButton.addEventListener("click", function() {
+        playerChoice = "rock";
+        playGame(playerChoice);
+    });
+    paperButton.addEventListener("click", function() {
+        playerChoice = "paper";
+        playGame(playerChoice);
+    });
+    scissorsButton.addEventListener("click", function() {
+        playerChoice = "scissors";
+        playGame(playerChoice);
+    });
+    resetButton.addEventListener("click", function() {
+        playerScore.textContent = "0";
+        computerScore.textContent = "0";
+        scoreBoard[0] = 0;
+        scoreBoard[1] = 0;
+    })
+}
+
+//logic for play game
+const playGame = function(playerChoice){
     const computerChoice = computerSelection();
-    const playerChoice = playerSelection();
-    let hasWinner = false;
     if (playerChoice === validChoices[computerChoice]){
-        alert("It's a Tie!  Play Again");
-        playGame();
-        return;
+        message.textContent = "It's a tie!  Choose again.";
     } else if(validChoices[(computerChoice + 1) % 3] === playerChoice){
         scoreBoard[1]++;
-        alert(`player wins.  scoreBoard[1] = ${scoreBoard[1]}`);
+        playerScore.textContent = `${scoreBoard[1]}`;
+        message.innerHTML = `You Win! <br> <br> You chose ${playerChoice}, computer chose ${validChoices[computerChoice]}`;
     } else {
         scoreBoard[0]++;
-        alert(`computer wins.  scoreBoard[0] = ${scoreBoard[0]}`);
-    }
-    if(scoreBoard.includes(2)){
-        hasWinner = true;
-        if(scoreBoard[0] == 2){
-            console.log("Computer Wins!");
-        } else {
-            console.log("Player Wins!");
-        }
-    }
-    console.log(`player choice: ${playerChoice}, computer choice: ${validChoices[computerChoice]}`);
-    console.log(`player score: ${scoreBoard[1]}, computer score: ${scoreBoard[0]}`)
-    if (!hasWinner){
-        playGame();
+        computerScore.textContent = `${scoreBoard[0]}`
+        message.innerHTML = `Computer Wins! <br> <br> You chose ${playerChoice}, computer chose ${validChoices[computerChoice]}`;
     }
     return;
 }
 
-playGame();
+addEvents();

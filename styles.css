@@ -1,0 +1,90 @@
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;   
+}
+
+:root{
+    --dark-background: rgb(0, 11, 20);
+    --light-background: rgb(0, 18, 32);
+    --highlight-color: #187cc9;
+}
+
+html{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-background);
+}
+
+body{
+    color: whitesmoke;
+    width: 835px;
+    height: auto;
+    border: solid var(--highlight-color) 2px;
+    box-shadow: 0px 0px 5px 2px var(--highlight-color);
+}
+
+div#title-div {
+    padding: 25px;
+    text-align: center;
+    background-color: var(--light-background);
+    font-weight: 700;
+    font-size: 30px;
+}
+
+#title-div h1{
+    text-shadow: var(--highlight-color) 2px 0px 6px;
+}
+div#scoreboard {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+div#message-container{
+    padding: 25px;
+    height: 80px;
+    background-color: var(--dark-background);
+    text-align: center;
+    text-shadow: rgb(0, 230, 230) 2px 0px 10px;
+}
+
+div#button-container{
+    padding: 25px;
+    background-color: var(--light-background);
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+div#player-choice{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+div#game-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    background-color: var(--highlight-color);
+    color: whitesmoke;
+    border-radius: 30px;
+    box-shadow: 0px 0px 5px 2px var(--highlight-color);
+}
+
+button#next-round{
+    background-color: green;
+    box-shadow: 0px 0px 5px 2px greenyellow;
+}
+
+button#reset{
+    background-color: red;
+    box-shadow: 0px 0px 5px 2px crimson;
+}
